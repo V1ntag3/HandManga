@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "HandBook",
+    "slug": "HandBook",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "HandBook"
+}
