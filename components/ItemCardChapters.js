@@ -1,31 +1,30 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
+import Globals from '../Globals'
 export default function ItemCard({ navigation, item }) {
     return <TouchableOpacity onPress={() => {
         navigation.navigate("ReadManga", item)
 
     }} style={styles.card}>
         {
-            <Text style={styles.text}>{item.attributes.chapter}</Text>
+            <Text style={styles.text}>#{item.attributes.chapter}</Text>
         }
 
     </TouchableOpacity>
 }
 
 const styles = {
-    body: {
-        flex: 1, alignItems: 'center', justifyContent: 'center'
-    },
+
     card: {
-        backgroundColor: '#e2e2e2',
+        backgroundColor: Globals.COLOR.LIGHT.COLOR1,
         borderRadius: 10,
         marginBottom: 10,
-        height: 70
+        paddingVertical:10,
+        paddingHorizontal:10,
+        flex:0.32,
+        maxWidth:"32%"
+
     },
-    title: {
-        color: 'black'
-    },
-    listScheduling: {
-        backgroundColor: 'transparent',
-        marginTop: 10
+    text: {
+        color:'white'
     },
 }

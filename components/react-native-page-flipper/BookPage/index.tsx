@@ -415,9 +415,5 @@ const styles = StyleSheet.create({
         position: 'absolute',
         backfaceVisibility: 'hidden',
         overflow: 'hidden',
-        // justifyContent: 'center',
-        // alignItems: 'flex-end',
-        // backgroundColor: 'rgba(0,0,0,0)',
-        // backgroundColor: 'white',
     },
 });

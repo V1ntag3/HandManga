@@ -1,19 +1,15 @@
 import PublicStack from "./routes/PublicStack";
-import { StyleSheet, Text } from 'react-native';
-import { GestureHandlerRootView, } from "react-native-gesture-handler";
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-
+import { useFonts } from "expo-font";
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    'OceanRush': require('./assets/fonts/OceanRush.otf'),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    // <><Text> Text</Text>
-    // <GestureHandlerRootView style={{ flex: 1 }}>
-    //   <NativeBaseProvider>
-    //     <SafeAreaProvider>
-
-          <PublicStack />
-
-    //     </SafeAreaProvider>
-    //   </NativeBaseProvider>
-    // </GestureHandlerRootView></>
+    <PublicStack />
   );
 }

@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../views/Home'
 import ListChaptersManga from '../views/ListChaptersManga'
 import ReadManga from '../views/ReadManga'
+import Search from '../views/Search';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,9 +15,10 @@ export default function PublicStack() {
             <Stack.Navigator screenOptions={{
                 headerShown: false
             }} >
-                <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen  name="Home" component={Home} />
                 <Stack.Screen name="ListChaptersManga" component={ListChaptersManga} />
                 <Stack.Screen name="ReadManga" component={ReadManga} />
+                <Stack.Screen name="Search" component={Search} />
 
 
             </Stack.Navigator>

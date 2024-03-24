@@ -31,8 +31,5 @@ export default {
         'Novembro',
         'Dezembro',
     ],
-    COLOR_ERROR: '#FA0501',
-    COLOR_PENDENCY: '#C42627',
-    COLOR_NO_PENDENCY: '#2F80ED'
-
+    COLOR_ERROR: '#FA0501'
 };

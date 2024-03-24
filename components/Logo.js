@@ -1,21 +1,13 @@
 
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import Globals from '../Globals';
-import Menu from '../components/Menu';
-export default ({ navigation }) => {
+export default () => {
 
     return (
-        <View
-            style={styles.body}
-        >
-            <Text style={styles.logo}>HandManga</Text>
-            <Menu navigation={navigation} />
-
-        </View>
+        <Text style={styles.logo}>HandManga</Text>
     );
 }
-
 
 const styles = StyleSheet.create({
     body: {
@@ -24,17 +16,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: Globals.COLOR.LIGHT.COLOR5,
         paddingVertical: 15,
-        position:'relative'
+        position: 'relative'
     },
     logo: {
         color: Globals.COLOR.LIGHT.COLOR2,
         fontFamily: 'OceanRush',
-        fontSize:60
+        fontSize: 60
     },
     listScheduling: {
         width: '95%',
         backgroundColor: 'transparent',
         marginTop: 10
-
+    },
+    logo: {
+        color: Globals.COLOR.LIGHT.COLOR2,
+        fontFamily: 'OceanRush',
+        fontSize: 30
     },
 })
