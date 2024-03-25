@@ -11,9 +11,15 @@ export default function InputSearch({ value, onChange, placeholder, func }) {
                 <FontAwesomeIcon icon={faSearch} size={25} color={Globals.COLOR.LIGHT.COLOR5} />
             </TouchableOpacity>
             <TextInput
+                onKeyPress={(event) => {
+                    if (event.nativeEvent.key === 'Enter') {
+                        func()
+                    }
+                }}
+                onSubmitEditing={func}
                 placeholderTextColor={Globals.COLOR.LIGHT.COLOR5}
                 selectionColor={Globals.COLOR.LIGHT.COLOR5}
-                inputMode='text'
+                inputMode='search'
                 placeholder={placeholder}
                 style={[styles.input]}
                 value={value}

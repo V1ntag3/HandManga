@@ -4,6 +4,7 @@ import Home from '../views/Home'
 import ListChaptersManga from '../views/ListChaptersManga'
 import ReadManga from '../views/ReadManga'
 import Search from '../views/Search';
+import Config from '../views/Config';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,7 +12,6 @@ const Stack = createNativeStackNavigator();
 export default function PublicStack() {
     return (
         <NavigationContainer>
-
             <Stack.Navigator screenOptions={{
                 headerShown: false
             }} >
@@ -19,10 +19,10 @@ export default function PublicStack() {
                 <Stack.Screen name="ListChaptersManga" component={ListChaptersManga} />
                 <Stack.Screen name="ReadManga" component={ReadManga} />
                 <Stack.Screen name="Search" component={Search} />
+                <Stack.Screen name="Config" component={Config} />
 
 
             </Stack.Navigator>
         </NavigationContainer>
-
     );
 }

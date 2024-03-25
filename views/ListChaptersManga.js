@@ -1,44 +1,98 @@
 
 import * as React from 'react';
 import { useState } from 'react';
-import { Text, View, FlatList, Image } from 'react-native';
+import { Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
 import Globals from '../Globals';
 import ItemCardChapters from '../components/ItemCardChapters'
 import Api from '../Api';
 import Logo from '../components/Logo';
 import Menu from '../components/Menu'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export default ({ navigation, route }) => {
     const manga = route.params;
+    const [language, setLanguage] = React.useState(null);
 
     const [chapters, setChapters] = useState([])
-    const [limit, setLimit] = useState(100)
+    const [limit, setLimit] = useState(20)
     const [offset, setOffset] = useState(0)
     const [total, setTotal] = useState(null)
 
-    const getChapters = () => {
-        if(total !== chapters.length){
-            Api.get("manga/" + manga.id + "/feed?limit=" + limit + "&order[volume]=desc&order[chapter]=desc&offset=" + offset).then((response) => {
-                setChapters(chapters.concat(response.data.data))
+    const [showMore, setShowMore] = useState(false)
+
+    const getChapters = async () => {
+        if (total !== chapters.length) {
+            await Api.get("manga/" + manga.id + "/feed?limit=" + limit + "&translatedLanguage[]=" + language + "&order[volume]=desc&order[chapter]=desc&offset=" + offset).then((response) => {
+                var array = chapters
+                array = array.concat(response.data.data)
                 setTotal(response.data.total)
                 setOffset(offset + response.data.data.length)
+                setChapters(chapters.concat(response.data.data))
+
             })
         }
     }
 
     React.useEffect(() => {
-        getChapters()
+        AsyncStorage.getItem('languageManga').then((value) => {
+            if (value != null) {
+                setLanguage(value)
+            } else {
+                setLanguage('pt-br')
+            }
+        })
     }, [])
+
+    React.useEffect(() => {
+        if (language != null) {
+            getChapters()
+        }
+    }, [language])
+
+    React.useEffect(() => {
+        var items = (Globals.HEIGHT - 150) / 30
+
+        if (language != null && total != null && chapters.length < total && items > chapters.length) {
+            getChapters()
+        }
+        console.log(chapters.length)
+    }, [chapters])
 
     return (
         <View style={styles.body} >
             <Logo />
             <View style={{ flexDirection: 'row', display: 'flex', width: '95%' }}>
                 <Image style={styles.cover} source={{ uri: manga.cover }} />
-                <Text numberOfLines={20} style={styles.text}>{manga.attributes.description.en}</Text>
+
+                <View style={{ flexDirection: 'column', marginLeft: 10 }}>
+                    <Text numberOfLines={!showMore ? 10 : 30} style={styles.text}>{manga.attributes.description.en}</Text>
+
+                    {showMore === false && <TouchableOpacity onPress={() => {
+                        setShowMore(true)
+                    }}>
+
+                        <Text style={{ color: "white" }}>ver mais</Text>
+
+                    </TouchableOpacity>
+                    }
+
+
+                    {showMore === true && <TouchableOpacity onPress={() => {
+                        setShowMore(false)
+                    }}>
+
+                        <Text style={{ color: "white" }}>ver menos</Text>
+
+                    </TouchableOpacity>
+                    }
+
+                </View>
+
+
             </View>
             <FlatList
                 disableVirtualization={false}
-                numColumns={3}
+                numColumns={2}
                 style={[styles.listScheduling, { height: Globals.HEIGHT, marginBottom: 58 }]}
                 data={chapters}
                 renderItem={({ item }) => <ItemCardChapters navigation={navigation} item={item} />}
@@ -49,7 +103,7 @@ export default ({ navigation, route }) => {
                 onEndReached={() => { getChapters() }}
                 onEndReachedThreshold={0.1}
             />
-            <Menu />
+            <Menu navigation={navigation} />
         </View>
     );
 }
@@ -71,13 +125,13 @@ const styles = {
     },
     cover: {
         width: 120,
-        height: 160,
+        height: 172,
         objectFit: 'cover'
     },
     text: {
         fontSize: 13,
         color: 'white',
         width: (Globals.WIDTH * 0.95) - 130,
-        marginLeft: 10
-    }
+    },
+
 }
