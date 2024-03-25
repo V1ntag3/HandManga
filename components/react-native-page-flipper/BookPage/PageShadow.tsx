@@ -21,17 +21,17 @@ const PageShadow: React.FC<PageShadowProps> = ({
 }) => {
     const colors = right
         ? [
-              'rgba(0,0,0,0.0)',
-              'rgba(0,0,0,0.0)',
-              'rgba(0,0,0,0.2)',
-              'rgba(0,0,0,0.6)',
-          ]
+            'rgba(0,0,0,0.0)',
+            'rgba(0,0,0,0.0)',
+            'rgba(0,0,0,0.2)',
+            'rgba(0,0,0,0.6)',
+        ]
         : [
-              'rgba(0,0,0,0.6)',
-              'rgba(0,0,0,0.2)',
-              'rgba(0,0,0,0.0)',
-              'rgba(0,0,0,0)',
-          ];
+            'rgba(0,0,0,0.6)',
+            'rgba(0,0,0,0.2)',
+            'rgba(0,0,0,0.0)',
+            'rgba(0,0,0,0)',
+        ];
     const shadowWidth = containerSize.width * 0.02;
     const animatedStyle = useAnimatedStyle(() => {
         const opacity = interpolate(

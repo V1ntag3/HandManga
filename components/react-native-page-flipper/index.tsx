@@ -442,22 +442,22 @@ const PageFlipper = React.forwardRef<PageFlipperInstance, IPageFlipperProps>(
             data.length % 2 !== 0;
 
         const bookPageProps: Omit<IBookPageProps, 'right' | 'front' | 'back'> =
-            {
-                containerSize: containerSize,
-                isAnimating: isAnimating,
-                enabled,
-                setIsAnimating: setIsAnimating,
-                isAnimatingRef: isAnimatingRef,
-                onPageFlip: onPageFlipped,
-                getPageStyle,
-                single: singleImageMode,
-                onFlipStart,
-                onPageDrag,
-                onPageDragEnd,
-                onPageDragStart,
-                isPressable: pressable,
-                renderPage,
-            };
+        {
+            containerSize: containerSize,
+            isAnimating: isAnimating,
+            enabled,
+            setIsAnimating: setIsAnimating,
+            isAnimatingRef: isAnimatingRef,
+            onPageFlip: onPageFlipped,
+            getPageStyle,
+            single: singleImageMode,
+            onFlipStart,
+            onPageDrag,
+            onPageDragEnd,
+            onPageDragStart,
+            isPressable: pressable,
+            renderPage,
+        };
 
         const ContentWrapper = renderContainer ? renderContainer : Wrapper;
 
@@ -573,14 +573,6 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         flexDirection: 'row',
-        // shadowColor: '#000',
-        // shadowOffset: {
-        //     width: 0,
-        //     height: 2,
-        // },
-        // shadowOpacity: 0.25,
-        // shadowRadius: 3.84,
-        // elevation: 5,
         backgroundColor: 'white',
     },
     content: {

@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import Globals from '../Globals'
-export default function ItemCard({ navigation, item }) {
+export default function ({ navigation, item }) {
     return (
         <TouchableOpacity onPress={() => { navigation.navigate("ListChaptersManga", item) }} style={styles.card}>
 
@@ -9,10 +9,9 @@ export default function ItemCard({ navigation, item }) {
                 <Text numberOfLines={5} style={styles.text}>{item.attributes.title.en}</Text>
             </View>
             {
-                item.attributes.lastChapter !== "" &&             <Text style={styles.chapter}>#{item.attributes.lastChapter}</Text>
+                item.attributes.lastChapter !== "" && <Text style={styles.chapter}>#{item.attributes.lastChapter}</Text>
 
             }
-
 
         </TouchableOpacity>)
 }

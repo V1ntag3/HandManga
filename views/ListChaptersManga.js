@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { useState } from 'react';
-import { Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
+import { Text, View, FlatList, Image, TouchableOpacity,StyleSheet } from 'react-native';
 import Globals from '../Globals';
 import ItemCardChapters from '../components/ItemCardChapters'
 import Api from '../Api';
@@ -93,7 +93,7 @@ export default ({ navigation, route }) => {
             <FlatList
                 disableVirtualization={false}
                 numColumns={2}
-                style={[styles.listScheduling, { height: Globals.HEIGHT, marginBottom: 58 }]}
+                style={[styles.listChapters, { height: Globals.HEIGHT, marginBottom: 58 }]}
                 data={chapters}
                 renderItem={({ item }) => <ItemCardChapters navigation={navigation} item={item} />}
                 showsVerticalScrollIndicator={false}
@@ -109,7 +109,7 @@ export default ({ navigation, route }) => {
 }
 
 
-const styles = {
+const styles = StyleSheet.create( {
     body: {
         flex: 1,
         alignItems: 'center',
@@ -117,7 +117,7 @@ const styles = {
         backgroundColor: Globals.COLOR.LIGHT.COLOR5,
         paddingVertical: 15,
     },
-    listScheduling: {
+    listChapters: {
         width: '95%',
         backgroundColor: 'transparent',
         marginTop: 10,
@@ -134,4 +134,4 @@ const styles = {
         width: (Globals.WIDTH * 0.95) - 130,
     },
 
-}
+})

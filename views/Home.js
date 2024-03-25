@@ -3,7 +3,6 @@ import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Globals from '../Globals';
 import Menu from '../components/Menu';
-import LogoAnimation from '../components/LogoAnimation';
 export default ({ navigation }) => {
 
     return (
@@ -30,11 +29,5 @@ const styles = StyleSheet.create({
         color: Globals.COLOR.LIGHT.COLOR2,
         fontFamily: 'OceanRush',
         fontSize:60
-    },
-    listScheduling: {
-        width: '95%',
-        backgroundColor: 'transparent',
-        marginTop: 10
-
     },
 })

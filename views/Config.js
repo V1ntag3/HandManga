@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Globals from '../Globals';
 import Menu from '../components/Menu';
@@ -9,6 +9,7 @@ import { SelectList } from 'react-native-dropdown-select-list'
 import ArrowDown from '../assets/imgs/ArrowDown';
 import SearchIcon from '../assets/imgs/SearchIcon';
 import Close from '../assets/imgs/Close';
+import ButtonVizualization from '../components/ButtonVizualization';
 
 export default ({ navigation }) => {
     const [language, setLanguage] = React.useState(null);
@@ -20,37 +21,10 @@ export default ({ navigation }) => {
         { key: 'en', value: 'Inglês', },
         { key: 'es', value: 'Espanhol', },
     ]
-    const renderHeader = () => {
-        return (
-            <View style={{ width: '95%', height: 65, borderRadius: 13, backgroundColor: Globals.COLOR.LIGHT.COLOR2 }}>
-                <View style={styles.buttons2}>
-                    <TouchableOpacity onPress={async () => {
-                        setVizualization(false)
-                        await AsyncStorage.setItem(
-                            'vizualization',
-                            'false',
-                        );
-                    }} style={[styles.button, { backgroundColor: !vizualization ? Globals.COLOR.LIGHT.COLOR2 : Globals.COLOR.LIGHT.COLOR4, }]}>
-                        <Text style={styles.buttonText}>Vertical</Text>
-                    </TouchableOpacity>
-                    
-                    <TouchableOpacity onPress={async () => {
-                        setVizualization(true)
-                        await AsyncStorage.setItem(
-                            'vizualization',
-                            'true',
-                        );
-                    }} style={[styles.button, { backgroundColor: vizualization ? Globals.COLOR.LIGHT.COLOR2 : Globals.COLOR.LIGHT.COLOR4 }]}>
-                        <Text style={styles.buttonText}>Horizontal</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        )
 
-    }
     React.useEffect(() => {
         AsyncStorage.getItem('vizualization').then((value) => {
-            console.log(value)
+
             if (value != null) {
                 setVizualization(value === 'true' ? true : false)
             } else {
@@ -73,6 +47,7 @@ export default ({ navigation }) => {
             }
         })
     }, [language])
+
     return (
         <View
             style={styles.body}
@@ -108,9 +83,7 @@ export default ({ navigation }) => {
                 />
                 <Text style={styles.label}>Vizualização</Text>
 
-                {
-                    renderHeader()
-                }
+                <ButtonVizualization vizualization={vizualization} setVizualization={setVizualization} />
 
             </View>
             <Menu navigation={navigation} />
@@ -127,11 +100,6 @@ const styles = StyleSheet.create({
         backgroundColor: Globals.COLOR.LIGHT.COLOR5,
         paddingVertical: 15,
         position: 'relative'
-    },
-    logo: {
-        color: Globals.COLOR.LIGHT.COLOR2,
-        fontFamily: 'OceanRush',
-        fontSize: 60
     },
     subContainer: {
         alignItems: 'center',
@@ -150,36 +118,8 @@ const styles = StyleSheet.create({
         width: '95%',
         fontWeight: '800',
         fontSize: 13,
-        marginTop:10,
+        marginTop: 10,
         marginBottom: 5,
         marginLeft: 3
-    },
-    buttons: {
-        display: 'flex',
-        flex: 1,
-        height: 65,
-        width: '95%',
-        backgroundColor: 'white',
-        borderRadius: 13,
-        marginBottom: 10,
-        backgroundColor: Globals.COLOR.LIGHT.COLOR2
-    },
-    buttons2: {
-        flexDirection: 'row',
-        borderRadius: 13,
-        marginBottom: 10,
-        color: Globals.COLOR.LIGHT.COLOR2
-    },
-    button: {
-        width: '50%',
-        height: 65,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 13
-    },
-    buttonText: {
-        fontSize: 16,
-        fontWeight: '700',
-        color: Globals.COLOR.LIGHT.COLOR3
     }
 })

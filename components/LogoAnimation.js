@@ -8,7 +8,6 @@ export default () => {
     const [animationComplete, setAnimationComplete] = useState(true);
 
     const handleAnimationEnd = () => {
-        // Define a flag de animação completa como true
         setTimeout(() => {
             setAnimationComplete(false)
         }, 300);

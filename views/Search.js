@@ -49,7 +49,7 @@ export default ({ navigation }) => {
         }
 
     }
-    useState(()=>{
+    useState(() => {
         AsyncStorage.getItem('languageManga').then((value) => {
             if (value != null) {
                 setLanguage(value)
@@ -57,7 +57,7 @@ export default ({ navigation }) => {
                 setLanguage('pt-br')
             }
         })
-    },[])
+    }, [])
     return (
         <View style={styles.body}>
             <Logo />
@@ -78,13 +78,13 @@ export default ({ navigation }) => {
                 setLoading(false)
                 Keyboard.dismiss();
                 searchFunc()
-                
+
             }} />
 
             {
-               loading && mangas.length === 0 ? <LogoAnimation /> :  (searched === false ? <ImageText Image={SearchImg} text="Fique a vontade para procurar um mangá" /> : (mangas.length > 0 ? ( <FlatList
+                loading && mangas.length === 0 ? <LogoAnimation /> : (searched === false ? <ImageText Image={SearchImg} text="Fique a vontade para procurar um mangá" /> : (mangas.length > 0 ? (<FlatList
                     disableVirtualization={false}
-                    style={[styles.listScheduling, { height: Globals.HEIGHT, marginBottom: 58 }]}
+                    style={[styles.listManga, { height: Globals.HEIGHT, marginBottom: 58 }]}
                     data={mangas}
                     renderItem={({ item }) => <ItemCard navigation={navigation} item={item} />}
                     showsVerticalScrollIndicator={false}
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         backgroundColor: Globals.COLOR.LIGHT.COLOR5,
         paddingVertical: 15,
     },
-    listScheduling: {
+    listManga: {
         width: '95%',
         backgroundColor: 'transparent',
         marginTop: 10

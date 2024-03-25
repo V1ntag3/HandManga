@@ -11,7 +11,7 @@ import ID from '../assets/imgs/ID';
 import IT from '../assets/imgs/IT';
 import RU from '../assets/imgs/RU';
 import UK from '../assets/imgs/UK';
-export default function ItemCard({ navigation, item }) {
+export default function ({ navigation, item }) {
     return <TouchableOpacity onPress={() => {
         navigation.navigate("ReadManga", item)
 

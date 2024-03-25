@@ -9,36 +9,14 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Logo from '../components/Logo';
 import Menu from '../components/Menu';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ButtonVizualization from '../components/ButtonVizualization';
 
 export default ({ navigation, route }) => {
     const chapter = route.params;
 
     const [pages, setPages] = useState([])
     const [vizualization, setVizualization] = useState(false)
-    const renderHeader = () => {
-        return (
-            <View style={styles.buttons2}>
-                <TouchableOpacity onPress={async () => {
-                    setVizualization(false)
-                    await AsyncStorage.setItem(
-                        'vizualization',
-                        'false',
-                    );
-                }} style={[styles.button, { backgroundColor: !vizualization ? Globals.COLOR.LIGHT.COLOR2 : Globals.COLOR.LIGHT.COLOR4, }]}>
-                    <Text style={styles.buttonText}>Vertical</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={async () => {
-                    setVizualization(true)
-                    await AsyncStorage.setItem(
-                        'vizualization',
-                        'true',
-                    );
-                }} style={[styles.button, { backgroundColor: vizualization ? Globals.COLOR.LIGHT.COLOR2 : Globals.COLOR.LIGHT.COLOR4 }]}>
-                    <Text style={styles.buttonText}>Horizontal</Text>
-                </TouchableOpacity>
-            </View>)
 
-    }
     const getPages = () => {
         Api.get("at-home/server/" + chapter.id).then((response) => {
             var array = []
@@ -65,7 +43,7 @@ export default ({ navigation, route }) => {
         <GestureHandlerRootView style={[styles.body, { backgroundColor: Globals.COLOR.LIGHT.COLOR5 }]}>
             <View style={styles.subBody}>
                 <Logo />
-                {pages.length > 0 && vizualization && <View style={{ width: '95%', height: 65, borderRadius: 13, backgroundColor: Globals.COLOR.LIGHT.COLOR2 }}>{renderHeader()}</View>}
+                {pages.length > 0 && vizualization && <ButtonVizualization vizualization={vizualization} setVizualization={setVizualization} />}
                 {pages.length > 0 && (vizualization ? <PageFlipper
                     data={pages}
                     enabled={true}
@@ -86,7 +64,7 @@ export default ({ navigation, route }) => {
 
                 /> : <FlatList
                     ListHeaderComponentStyle={styles.buttons}
-                    ListHeaderComponent={renderHeader()}
+                    ListHeaderComponent={<ButtonVizualization vizualization={vizualization} setVizualization={setVizualization}/>}
                     data={pages}
                     renderItem={({ item }) => (
                         <Image source={{ uri: item }} style={styles.image} />
@@ -115,10 +93,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         width: '100%',
     },
-    listScheduling: {
-        width: '100%',
-        flexDirection: 'column'
-    },
     imageContainer: {
         alignItems: 'center',
     },
@@ -128,31 +102,8 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     buttons: {
-        display: 'flex',
-        flex: 1,
-        height: 65,
-        width: '95%',
-        backgroundColor: 'white',
         borderRadius: 13,
         marginBottom: 10,
-        backgroundColor: Globals.COLOR.LIGHT.COLOR2
-    },
-    buttons2: {
-        flexDirection: 'row',
-        borderRadius: 13,
-        marginBottom: 10,
-        color: Globals.COLOR.LIGHT.COLOR2
-    },
-    button: {
-        width: '50%',
-        height: 65,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 13
-    },
-    buttonText: {
-        fontSize: 16,
-        fontWeight: '700',
-        color: Globals.COLOR.LIGHT.COLOR3
+        alignItems:'center'
     }
 })
