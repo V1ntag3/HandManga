@@ -20,8 +20,6 @@ export default function PublicStack() {
                 <Stack.Screen name="ReadManga" component={ReadManga} />
                 <Stack.Screen name="Search" component={Search} />
                 <Stack.Screen name="Config" component={Config} />
-
-
             </Stack.Navigator>
         </NavigationContainer>
     );

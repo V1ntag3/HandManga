@@ -61,7 +61,6 @@ export default ({ navigation }) => {
                     placeholder='Selecione uma opção'
                     searchPlaceholder='Pesquise aqui'
                     setSelected={async (val) => {
-                        console.log(val)
                         await AsyncStorage.setItem(
                             'languageManga',
                             val,
@@ -110,7 +109,7 @@ const styles = StyleSheet.create({
         color: 'white',
         width: '95%',
         borderColor: 'white',
-        backgroundColor: Globals.COLOR.LIGHT.COLOR1
+        backgroundColor: Globals.COLOR.LIGHT.COLOR2
     },
     label: {
         color: 'white',

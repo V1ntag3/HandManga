@@ -82,7 +82,7 @@ export default ({ navigation }) => {
             }} />
 
             {
-                loading && mangas.length === 0 ? <LogoAnimation /> : (searched === false ? <ImageText Image={SearchImg} text="Fique a vontade para procurar um mangá" /> : (mangas.length > 0 ? (<FlatList
+                loading && mangas.length === 0 ?  <LogoAnimation /> : (searched === false ? <ImageText Image={SearchImg} text="Fique a vontade para procurar um mangá" /> : (mangas.length > 0 ? (<FlatList
                     disableVirtualization={false}
                     style={[styles.listManga, { height: Globals.HEIGHT, marginBottom: 58 }]}
                     data={mangas}
@@ -93,6 +93,8 @@ export default ({ navigation }) => {
                     onEndReachedThreshold={0.1}
                 />) : <ImageText Image={NotFound} text="Não encontramos nenhum mangá com esse nome" />))
             }
+
+            
             <Menu navigation={navigation} />
         </View>
     );

@@ -14,7 +14,7 @@ export default ({ navigation, route }) => {
     const [language, setLanguage] = React.useState(null);
 
     const [chapters, setChapters] = useState([])
-    const [limit, setLimit] = useState(20)
+    const [limit, setLimit] = useState(16)
     const [offset, setOffset] = useState(0)
     const [total, setTotal] = useState(null)
 
@@ -55,7 +55,6 @@ export default ({ navigation, route }) => {
         if (language != null && total != null && chapters.length < total && items > chapters.length) {
             getChapters()
         }
-        console.log(chapters.length)
     }, [chapters])
 
     return (
@@ -65,7 +64,9 @@ export default ({ navigation, route }) => {
                 <Image style={styles.cover} source={{ uri: manga.cover }} />
 
                 <View style={{ flexDirection: 'column', marginLeft: 10 }}>
-                    <Text numberOfLines={!showMore ? 10 : 30} style={styles.text}>{manga.attributes.description.en}</Text>
+                    <Text ellipsizeMode='tail' numberOfLines={2} style={styles.textTitle}>{manga.attributes.title.en}</Text>
+
+                    <Text numberOfLines={!showMore ? 8 : 30} style={styles.text}>{manga.attributes.description.en}</Text>
 
                     {showMore === false && <TouchableOpacity onPress={() => {
                         setShowMore(true)
@@ -133,5 +134,11 @@ const styles = StyleSheet.create( {
         color: 'white',
         width: (Globals.WIDTH * 0.95) - 130,
     },
+    textTitle:{
+        width: (Globals.WIDTH * 0.95) - 130,
+        fontSize:17,
+        color:'white',
+        fontWeight:'700'
+    }
 
 })
