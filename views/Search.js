@@ -54,10 +54,8 @@ export default ({ navigation }) => {
         AsyncStorage.getItem('languageManga').then((value) => {
             if (value != null) {
                 setLanguage(value)
-            } else if (value == null) {
+            } else{
                 setLanguage('pt-br')
-            } else {
-                setLanguage('')
             }
         })
     }, [])

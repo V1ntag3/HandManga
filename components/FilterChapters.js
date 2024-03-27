@@ -30,10 +30,8 @@ export default function ({ navigation, mangaData }) {
         AsyncStorage.getItem('languageManga').then((value) => {
             if (value != null) {
                 setLanguage(value)
-            } else if (value == null) {
+            } else{
                 setLanguage('pt-br')
-            } else {
-                setLanguage('')
             }
         })
     }, [navigation])

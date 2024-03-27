@@ -47,9 +47,6 @@ export default ({ navigation }) => {
                 setDefault(find)
                 setLanguage(value)
             } else if (value === null) {
-                setDefault(data[0])
-                setLanguage(data[0])
-            } else {
                 setDefault(data[1])
                 setLanguage(data[1])
             }
