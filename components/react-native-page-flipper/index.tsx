@@ -55,7 +55,6 @@ const debug = true;
 
 const logger = (msg: string) => {
     if (debug) {
-        console.log(msg);
     }
 };
 

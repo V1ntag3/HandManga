@@ -23,11 +23,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: Globals.COLOR.LIGHT.COLOR5,
         paddingVertical: 15,
-        position:'relative'
+        position: 'relative'
     },
     logo: {
         color: Globals.COLOR.LIGHT.COLOR2,
         fontFamily: 'OceanRush',
-        fontSize:60
+        fontSize: 60
     },
 })

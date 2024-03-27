@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     logo: {
         color: Globals.COLOR.LIGHT.COLOR2,
         fontFamily: 'OceanRush',
-        fontSize: 30
+        fontSize: 60,
+        marginTop: Globals.HEIGHT * 0.15
     },
 });

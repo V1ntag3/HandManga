@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { useState } from 'react';
-import { Text, View, FlatList, Image, TouchableOpacity,StyleSheet } from 'react-native';
+import { Text, View, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Globals from '../Globals';
 import ItemCardChapters from '../components/ItemCardChapters'
 import Api from '../Api';
@@ -22,13 +22,13 @@ export default ({ navigation, route }) => {
 
     const getChapters = async () => {
         if (total !== chapters.length) {
-            await Api.get("manga/" + manga.id + "/feed?limit=" + limit + "&translatedLanguage[]=" + language + "&order[volume]=desc&order[chapter]=desc&offset=" + offset).then((response) => {
+            await Api.get("manga/" + manga.id + "/feed?limit=" + limit + (language !== " " ? ("&translatedLanguage[]=" + language) : "") + "&order[volume]=desc&order[chapter]=desc&offset=" + offset).then((response) => {
                 var array = chapters
                 array = array.concat(response.data.data)
+
                 setTotal(response.data.total)
                 setOffset(offset + response.data.data.length)
                 setChapters(chapters.concat(response.data.data))
-
             })
         }
     }
@@ -37,8 +37,10 @@ export default ({ navigation, route }) => {
         AsyncStorage.getItem('languageManga').then((value) => {
             if (value != null) {
                 setLanguage(value)
-            } else {
+            } else if (value == null) {
                 setLanguage('pt-br')
+            } else {
+                setLanguage('')
             }
         })
     }, [])
@@ -96,7 +98,7 @@ export default ({ navigation, route }) => {
                 numColumns={2}
                 style={[styles.listChapters, { height: Globals.HEIGHT, marginBottom: 58 }]}
                 data={chapters}
-                renderItem={({ item }) => <ItemCardChapters navigation={navigation} item={item} />}
+                renderItem={({ item }) => <ItemCardChapters numberOfLines={2} navigation={navigation} item={item} manga={manga} screenRoute={"AppDrawer"} />}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={(item, i) => i}
                 columnWrapperStyle={{ justifyContent: 'space-between' }}
@@ -110,7 +112,7 @@ export default ({ navigation, route }) => {
 }
 
 
-const styles = StyleSheet.create( {
+const styles = StyleSheet.create({
     body: {
         flex: 1,
         alignItems: 'center',
@@ -134,11 +136,11 @@ const styles = StyleSheet.create( {
         color: 'white',
         width: (Globals.WIDTH * 0.95) - 130,
     },
-    textTitle:{
+    textTitle: {
         width: (Globals.WIDTH * 0.95) - 130,
-        fontSize:17,
-        color:'white',
-        fontWeight:'700'
+        fontSize: 17,
+        color: 'white',
+        fontWeight: '700'
     }
 
 })

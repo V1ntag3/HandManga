@@ -69,7 +69,6 @@ export const transformOrigin = (
 };
 
 const debug = (msg: string, val: any) => {
-    console.log(msg, val);
 };
 
 export const debugValue = (msg: string, val: any) => {

@@ -17,14 +17,19 @@ export default ({ navigation }) => {
     const [vizualization, setVizualization] = React.useState(false)
 
     const data = [
+        { key: ' ', value: 'Todos', },
         { key: 'pt-br', value: 'Português Brasileiro', },
         { key: 'en', value: 'Inglês', },
         { key: 'es', value: 'Espanhol', },
+        { key: 'es-la', value: 'Espanhol Latino', },
+        { key: 'ja', value: 'Japonês', },
+        { key: 'fr', value: 'Francês', },
+        { key: 'ko', value: 'Coreano', },
+
     ]
 
     React.useEffect(() => {
         AsyncStorage.getItem('vizualization').then((value) => {
-
             if (value != null) {
                 setVizualization(value === 'true' ? true : false)
             } else {
@@ -35,15 +40,18 @@ export default ({ navigation }) => {
 
     React.useEffect(() => {
         AsyncStorage.getItem('languageManga').then((value) => {
-            if (value != null) {
+            if (value !== null) {
                 var find = data.find((elem) => {
                     return elem.key === value
                 })
                 setDefault(find)
                 setLanguage(value)
-            } else {
+            } else if (value === null) {
                 setDefault(data[0])
                 setLanguage(data[0])
+            } else {
+                setDefault(data[1])
+                setLanguage(data[1])
             }
         })
     }, [language])

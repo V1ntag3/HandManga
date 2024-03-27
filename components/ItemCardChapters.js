@@ -11,11 +11,14 @@ import ID from '../assets/imgs/ID';
 import IT from '../assets/imgs/IT';
 import RU from '../assets/imgs/RU';
 import UK from '../assets/imgs/UK';
-export default function ({ navigation, item }) {
-    return <TouchableOpacity onPress={() => {
-        navigation.navigate("ReadManga", item)
 
-    }} style={styles.card}>
+export default function ({ numberOfLines, navigation, item, manga, screenRoute }) {
+    return <TouchableOpacity onPress={() => {
+        var chapter_manga = item
+        chapter_manga.manga = manga
+        navigation.navigate(screenRoute, chapter_manga)
+
+    }} style={[styles.card, { flex: 1, maxWidth: (100 / numberOfLines - 1) + "%", }]}>
         {
             <><Text style={styles.text}>#{item.attributes.chapter}</Text>
                 <View style={{ height: 20, width: 28 }}>
@@ -26,7 +29,7 @@ export default function ({ navigation, item }) {
                         (item.attributes.translatedLanguage.includes("zh")) && <CH />
                     }
                     {
-                        (item.attributes.translatedLanguage === "pt-br") && <PTBR />
+                        (item.attributes.translatedLanguage.includes("pt-br")) && <PTBR />
                     }
                     {
                         (item.attributes.translatedLanguage.includes("js")) && <JP />
@@ -69,8 +72,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         paddingVertical: 10,
         paddingHorizontal: 10,
-        flex: 0.49,
-        maxWidth: "49%",
         flexDirection: 'row',
         justifyContent: "space-between"
 

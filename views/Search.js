@@ -28,7 +28,7 @@ export default ({ navigation }) => {
 
         if (mangas.length !== total && (loading === false)) {
             setLoading(true)
-            await Api.get("manga?limit=" + limit + "&offset=" + offset + "&availableTranslatedLanguage[]=" + language + "&includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&title=" + search + "&includedTagsMode=AND&excludedTagsMode=OR").then((response) => {
+            await Api.get("manga?limit=" + limit + "&offset=" + offset + (language !== " " ? ("&availableTranslatedLanguage[]=" + language) : "") + "&includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&title=" + search + "&includedTagsMode=AND&excludedTagsMode=OR").then((response) => {
 
                 var array = response.data.data
                 array.map(elem => {
@@ -53,8 +53,10 @@ export default ({ navigation }) => {
         AsyncStorage.getItem('languageManga').then((value) => {
             if (value != null) {
                 setLanguage(value)
-            } else {
+            } else if (value == null) {
                 setLanguage('pt-br')
+            } else {
+                setLanguage('')
             }
         })
     }, [])
@@ -82,7 +84,7 @@ export default ({ navigation }) => {
             }} />
 
             {
-                loading && mangas.length === 0 ?  <LogoAnimation /> : (searched === false ? <ImageText Image={SearchImg} text="Fique a vontade para procurar um mangá" /> : (mangas.length > 0 ? (<FlatList
+                loading && mangas.length === 0 ? <LogoAnimation /> : (searched === false ? <ImageText Image={SearchImg} text="Fique a vontade para procurar um mangá" /> : (mangas.length > 0 ? (<FlatList
                     disableVirtualization={false}
                     style={[styles.listManga, { height: Globals.HEIGHT, marginBottom: 58 }]}
                     data={mangas}
@@ -94,7 +96,7 @@ export default ({ navigation }) => {
                 />) : <ImageText Image={NotFound} text="Não encontramos nenhum mangá com esse nome" />))
             }
 
-            
+
             <Menu navigation={navigation} />
         </View>
     );

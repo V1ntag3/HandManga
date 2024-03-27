@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faSearch, faHome, faGear } from "@fortawesome/free-solid-svg-icons";
 
 export default function Menu({ navigation }) {
-    
+
     return (
         <View style={styles.menu}>
 
@@ -36,7 +36,6 @@ export default function Menu({ navigation }) {
     )
 }
 
-
 const styles = StyleSheet.create({
     item: {
         width: '33.3%',
@@ -54,13 +53,11 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 15,
         flexDirection: 'row',
         justifyContent: "space-around",
-
         shadowColor: '#52006A',
-        shadowOffset: {width: -40, height: -10},
+        shadowOffset: { width: -40, height: -10 },
         shadowOpacity: 1,
         shadowRadius: 10,
         elevation: 10,
-
     },
     text: {
         color: 'white',

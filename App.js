@@ -3,7 +3,6 @@ import { useFonts } from "expo-font";
 import SplashScreen from './views/SplashScreen';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { useState, useEffect } from "react";
-import { View } from "react-native";
 export default function App() {
   const [fontsLoaded] = useFonts({
     'OceanRush': require('./assets/fonts/OceanRush.otf'),
