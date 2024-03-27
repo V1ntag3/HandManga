@@ -13,6 +13,7 @@ import Menu from '../components/Menu'
 import Logo from '../components/Logo';
 import LogoAnimation from '../components/LogoAnimation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LogoAnimationBig from '../components/LogoAnimationBig';
 
 export default ({ navigation }) => {
     const [search, setSearch] = useState("")
@@ -84,7 +85,7 @@ export default ({ navigation }) => {
             }} />
 
             {
-                loading && mangas.length === 0 ? <LogoAnimation /> : (searched === false ? <ImageText Image={SearchImg} text="Fique a vontade para procurar um mangá" /> : (mangas.length > 0 ? (<FlatList
+                loading && mangas.length === 0 ? <LogoAnimationBig /> : (searched === false ? <ImageText Image={SearchImg} text="Fique a vontade para procurar um mangá" /> : (mangas.length > 0 ? (<FlatList
                     disableVirtualization={false}
                     style={[styles.listManga, { height: Globals.HEIGHT, marginBottom: 58 }]}
                     data={mangas}

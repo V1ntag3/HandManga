@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ({ setVizualization, vizualization }) {
     return (
-        <View style={{ width: '95%', height: 65, borderRadius: 13, backgroundColor: Globals.COLOR.LIGHT.COLOR2 }}>
+        <View style={{ width: '95%', height: 47, borderRadius: 13, backgroundColor: Globals.COLOR.LIGHT.COLOR2 }}>
             <View style={styles.buttons2}>
                 <TouchableOpacity onPress={async () => {
                     setVizualization(false)
@@ -36,14 +36,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderRadius: 13,
         marginBottom: 10,
-        color: Globals.COLOR.LIGHT.COLOR2
+        color: Globals.COLOR.LIGHT.COLOR2,
     },
     button: {
         width: '50%',
         height: 65,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 13
+        borderRadius: 13,
+        height:47
     },
     buttonText: {
         fontSize: 16,

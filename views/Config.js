@@ -117,7 +117,8 @@ const styles = StyleSheet.create({
         color: 'white',
         width: '95%',
         borderColor: 'white',
-        backgroundColor: Globals.COLOR.LIGHT.COLOR2
+        backgroundColor: Globals.COLOR.LIGHT.COLOR2,
+        // height:47
     },
     label: {
         color: 'white',
