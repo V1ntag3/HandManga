@@ -3,7 +3,6 @@ import * as React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Globals from '../Globals';
-import Menu from '../components/Menu';
 import Logo from '../components/Logo';
 import { SelectList } from 'react-native-dropdown-select-list'
 import ArrowDown from '../assets/imgs/ArrowDown';
@@ -90,7 +89,6 @@ export default ({ navigation }) => {
                 <ButtonVizualization vizualization={vizualization} setVizualization={setVizualization} />
 
             </View>
-            <Menu navigation={navigation} />
         </View>
     );
 }

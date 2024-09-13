@@ -6,7 +6,6 @@ import Globals from '../Globals';
 import ItemCardChapters from '../components/ItemCardChapters'
 import Api from '../Api';
 import Logo from '../components/Logo';
-import Menu from '../components/Menu'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default ({ navigation, route }) => {
@@ -104,7 +103,6 @@ export default ({ navigation, route }) => {
                 onEndReached={() => { getChapters() }}
                 onEndReachedThreshold={0.1}
             />
-            <Menu navigation={navigation} />
         </View>
     );
 }

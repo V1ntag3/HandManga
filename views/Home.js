@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Globals from '../Globals';
-import Menu from '../components/Menu';
 export default ({ navigation }) => {
 
     return (
@@ -10,7 +9,6 @@ export default ({ navigation }) => {
             style={styles.body}
         >
             <Text style={styles.logo}>HandManga</Text>
-            <Menu navigation={navigation} />
         </View>
     );
 }

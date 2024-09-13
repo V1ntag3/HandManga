@@ -9,9 +9,7 @@ import ItemCard from '../components/ItemCard'
 import ImageText from '../components/ImageText';
 import SearchImg from '../assets/imgs/SearchImg';
 import NotFound from '../assets/imgs/NotFound';
-import Menu from '../components/Menu'
 import Logo from '../components/Logo';
-import LogoAnimation from '../components/LogoAnimation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LogoAnimationBig from '../components/LogoAnimationBig';
 
@@ -94,9 +92,6 @@ export default ({ navigation }) => {
                     onEndReachedThreshold={0.1}
                 />) : <ImageText Image={NotFound} text="Não encontramos nenhum mangá com esse nome" />))
             }
-
-
-            <Menu navigation={navigation} />
         </View>
     );
 }
@@ -108,7 +103,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         backgroundColor: Globals.COLOR.LIGHT.COLOR5,
-        paddingVertical: 15,
+        paddingVertical: 20,
+        Bottom:80,
     },
     listManga: {
         width: '95%',

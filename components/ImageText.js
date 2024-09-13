@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     image: {
         width: '95%',
         height: 400,
-        marginTop: 60
+        marginTop: 20
     },
     text: {
         width: '95%',

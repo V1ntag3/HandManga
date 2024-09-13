@@ -7,7 +7,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 export default function InputSearch({ value, onChange, placeholder, func }) {
     return (
         <View style={{ position: 'relative', width: '95%' }}>
-            <TouchableOpacity onPress={func} style={{ top: 12, zIndex: 1000, right: 10, position: 'absolute' }} >
+            <TouchableOpacity onPress={func} style={{ top: 10, zIndex: 1000, right: 10, position: 'absolute' }} >
                 <FontAwesomeIcon icon={faSearch} size={25} color={Globals.COLOR.LIGHT.COLOR5} />
             </TouchableOpacity>
             <TextInput

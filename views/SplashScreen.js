@@ -12,7 +12,7 @@ export default function SplashScreen() {
   return (
     <SafeAreaView style={styles.body}>
       <View style={[styles.containerNome]}>
-        <Text style={styles.nomeApp}>HandBook</Text>
+        <Text style={styles.nomeApp}>HandManga</Text>
       </View>
     </SafeAreaView>
   );

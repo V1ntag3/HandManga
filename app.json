@@ -1,11 +1,30 @@
 {
   "expo": {
-    "name": "HandBook",
-    "slug": "HandBook",
+    "name": "HandManga",
+    "slug": "HandManga",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "orientation": "portrait",
+    "icon": "./assets/icon/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/icon/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#293330"
+    },
+    "ios": {
+      "bundleIdentifier": "com.alencar.bundle.handmanga",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSFileProtectionCompleteUntilFirstUserAuthentication": true
+      }
+    },
+    "android": {
+      "package": "com.alencar.handmanga",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon/adaptive-icon.png",
+        "backgroundColor": "#293330"
+      }
+    },
     "plugins": [
       [
         "expo-font",
@@ -14,6 +33,5 @@
         }
       ]
     ]
-  },
-  "name": "HandBook"
+  }
 }
