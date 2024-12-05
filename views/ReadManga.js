@@ -111,10 +111,10 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         width: '100%',
-        paddingTop:20
+        paddingTop:0
     },
     subBody: {
-        height: Globals.HEIGHT - 75,
+        height: Globals.HEIGHT - 160,
         alignItems: 'center',
         justifyContent: 'flex-start',
         width: '100%',

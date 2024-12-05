@@ -3,6 +3,8 @@ import { useFonts } from "expo-font";
 import SplashScreen from './views/SplashScreen';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { useState, useEffect } from "react";
+import { SafeAreaView, StatusBar } from "react-native";
+import Globals from "./Globals";
 export default function App() {
   const [fontsLoaded] = useFonts({
     'OceanRush': require('./assets/fonts/OceanRush.otf'),
@@ -42,6 +44,8 @@ export default function App() {
 
 
   return (
-    <PublicStack />
+    <SafeAreaView style={{ flex: 1, backgroundColor: Globals.COLOR.LIGHT.COLOR5 }}>
+      <PublicStack />
+    </SafeAreaView>
   );
 }

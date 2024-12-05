@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         backgroundColor: Globals.COLOR.LIGHT.COLOR5,
         paddingVertical: 20,
+        paddingTop:0,
         Bottom:80,
     },
     listManga: {

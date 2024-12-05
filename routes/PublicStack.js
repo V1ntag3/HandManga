@@ -47,7 +47,7 @@ export default function App() {
   return (
     <><NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="AppStack" component={AppStack} />
+        <Stack.Screen name="AppStack" component={AppStack}  />
         <Stack.Screen name="AppDrawer" component={AppDrawer} />
       </Stack.Navigator>
     </NavigationContainer>

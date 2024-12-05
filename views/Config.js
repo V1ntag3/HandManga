@@ -101,7 +101,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         backgroundColor: Globals.COLOR.LIGHT.COLOR5,
         paddingVertical: 15,
-        position: 'relative'
+        position: 'relative',
+        paddingTop:0
     },
     subContainer: {
         alignItems: 'center',

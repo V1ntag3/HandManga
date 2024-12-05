@@ -115,6 +115,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         backgroundColor: Globals.COLOR.LIGHT.COLOR5,
         paddingVertical: 15,
+        paddingTop:0
+
     },
     listChapters: {
         width: '95%',

@@ -39,11 +39,12 @@ const styles = StyleSheet.create({
         color: Globals.COLOR.LIGHT.COLOR2,
     },
     button: {
-        width: '50%',
+        width: '50.1%',
         height: 65,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 13,
+
         height:47
     },
     buttonText: {

@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: Globals.COLOR.LIGHT.COLOR5,
         paddingVertical: 15,
-        position: 'relative'
+        position: 'relative',
+        paddingTop:0
+
     },
     logo: {
         color: Globals.COLOR.LIGHT.COLOR2,
