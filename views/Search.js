@@ -27,7 +27,7 @@ export default ({ navigation }) => {
 
         if (mangas.length !== total && (loading === false)) {
             setLoading(true)
-            await Api.get("manga?limit=" + limit + "&offset=" + offset + (language !== " " ? ("&availableTranslatedLanguage[]=" + language) : "") + "&includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&title=" + search + "&includedTagsMode=AND&excludedTagsMode=OR").then((response) => {
+            await Api.get("manga?limit=" + limit + "&offset=" + offset + (language !== " " ? ("&availableTranslatedLanguage[]=" + language) : "") + "&includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&title=" + search + "&includedTagsMode=OR&excludedTagsMode=AND&order[relevance]=desc").then((response) => {
 
                 var array = response.data.data
                 array.map(elem => {
@@ -57,6 +57,13 @@ export default ({ navigation }) => {
             }
         })
     }, [])
+    React.useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            setSearch("")
+        });
+    
+        return unsubscribe;
+      }, [navigation]);
     return (
         <View style={styles.body}>
             <Logo />

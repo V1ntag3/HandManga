@@ -7,10 +7,13 @@ import ItemCardChapters from '../components/ItemCardChapters'
 import Api from '../Api';
 import Logo from '../components/Logo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ImageText from '../components/ImageText';
+import NotFound from '../assets/imgs/NotFound';
 
 export default ({ navigation, route }) => {
     const manga = route.params;
     const [language, setLanguage] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
 
     const [chapters, setChapters] = useState([])
     const [limit, setLimit] = useState(16)
@@ -28,6 +31,7 @@ export default ({ navigation, route }) => {
                 setTotal(response.data.total)
                 setOffset(offset + response.data.data.length)
                 setChapters(chapters.concat(response.data.data))
+                setLoading(false)
             })
         }
     }
@@ -60,7 +64,7 @@ export default ({ navigation, route }) => {
         <View style={styles.body} >
             <Logo />
             <View style={{ flexDirection: 'row', display: 'flex', width: '95%' }}>
-                <Image style={styles.cover} source={{ uri: manga.cover }} />
+                <Image style={styles.cover} source={{ uri: manga.cover, cache: 'force-cache' }} />
 
                 <View style={{ flexDirection: 'column', marginLeft: 10 }}>
                     <Text ellipsizeMode='tail' numberOfLines={2} style={styles.textTitle}>{manga.attributes.title.en}</Text>
@@ -90,16 +94,16 @@ export default ({ navigation, route }) => {
 
 
             </View>
+            {!loading && chapters.length === 0 && (
+                <ImageText style Image={NotFound} text="Sem capítulos disponíveis" />
+            )}
             <FlatList
                 disableVirtualization={false}
-                numColumns={2}
                 style={[styles.listChapters, { height: Globals.HEIGHT, marginBottom: 58 }]}
                 data={chapters}
                 renderItem={({ item }) => <ItemCardChapters numberOfLines={2} navigation={navigation} item={item} manga={manga} screenRoute={"AppDrawer"} />}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={(item, i) => i}
-                columnWrapperStyle={{ justifyContent: 'space-between' }}
-
                 onEndReached={() => { getChapters() }}
                 onEndReachedThreshold={0.1}
             />
@@ -115,7 +119,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         backgroundColor: Globals.COLOR.LIGHT.COLOR5,
         paddingVertical: 15,
-        paddingTop:0
+        paddingTop: 0
 
     },
     listChapters: {

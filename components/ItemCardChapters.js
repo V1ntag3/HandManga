@@ -18,7 +18,7 @@ export default function ({ numberOfLines, navigation, item, manga, screenRoute }
         chapter_manga.manga = manga
         navigation.navigate(screenRoute, chapter_manga)
 
-    }} style={[styles.card, { flex: 1, maxWidth: (100 / numberOfLines - 1) + "%", }]}>
+    }} style={[styles.card, { flex: 1, }]}>
         {
             <><Text style={styles.text}>#{item.attributes.chapter}</Text>
                 <View style={{ height: 20, width: 28 }}>

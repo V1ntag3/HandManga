@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { useState } from 'react';
-import { View, Image, FlatList,Dimensions, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, Image, FlatList, Dimensions, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import Globals from '../Globals';
 import PageFlipper from '../components/react-native-page-flipper';
 import Api from '../Api';
@@ -20,13 +20,13 @@ export default ({ navigation, route }) => {
     const [imageDimensions, setImageDimensions] = useState({});
 
     const onImageLoad = (width, height, index) => {
-      const screenWidth = Dimensions.get('window').width;
-      const scaleFactor = width / screenWidth;
-      const imageHeight = height / scaleFactor;
-      setImageDimensions((prevState) => ({
-        ...prevState,
-        [index]: imageHeight, // Salva a altura da imagem específica
-      }));
+        const screenWidth = Dimensions.get('window').width;
+        const scaleFactor = width / screenWidth;
+        const imageHeight = height / scaleFactor;
+        setImageDimensions((prevState) => ({
+            ...prevState,
+            [index]: imageHeight, // Salva a altura da imagem específica
+        }));
     };
     const getPages = async () => {
         setPages([])
@@ -78,26 +78,30 @@ export default ({ navigation, route }) => {
                         elevation: 20,
                         shadowOpacity: 0.4
                     }}
-                    renderPage={(data) => <Image source={{ uri: data }} style={{ height: '100%', width: '100%' }} />}
+                    renderPage={(data) => <Image source={{ uri: data, cache:'force-cache' }} style={{ height: '100%', width: '100%' }} />}
 
                 /> : <Zoomable isDoubleTapEnabled={true}><FlatList
                     ListHeaderComponentStyle={styles.buttons}
                     ListHeaderComponent={<ButtonVizualization vizualization={vizualization} setVizualization={setVizualization} />}
                     data={pages}
                     renderItem={({ item, index }) => (
-                        <Image  source={{ uri: item, cache:'force-cache'}}
-                        style={[
-                          styles.image,
-                          { height: imageDimensions[index] }, // Altura padrão até carregar
-                        ]}
-                        resizeMode="contain"
-                        onLoad={(e) =>
-                          onImageLoad(e.nativeEvent.source.width, e.nativeEvent.source.height, index)
-                        } />
+                        <Image
+                            key={index}
+                            source={{ uri: item, cache: 'force-cache' }}
+                            style={[styles.image, {
+                                borderColor: 'transparent', borderWidth: 1
+                            },
+                            { height: imageDimensions[index] }, // Altura padrão até carregar
+                            ]}
+                            onLoad={(e) =>
+                                onImageLoad(e.nativeEvent.source.width, e.nativeEvent.source.height, index)
+                            }
+                            resizeMode='cover'
+                        />
                     )}
                     keyExtractor={(item, i) => i}
                     contentContainerStyle={styles.imageContainer}
-                /></Zoomable> ) : <LogoAnimationBig />
+                /></Zoomable>) : <LogoAnimationBig />
 
                 }
             </View>
@@ -111,7 +115,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         width: '100%',
-        paddingTop:0
+        paddingTop: 0
     },
     subBody: {
         height: Globals.HEIGHT - 160,
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         alignItems: 'center',
-        paddingBottom:20
+        paddingBottom: 20
     },
     image: {
         width: Globals.WIDTH,

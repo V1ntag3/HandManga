@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Text, StyleSheet } from 'react-native';
 import Globals from '../Globals';
 
-export default ({ text, Image }) => {
+export default ({ text, Image, style }) => {
 
     return (
         <><Image style={styles.image} /><Text style={styles.text}>{text}</Text></>
@@ -14,8 +14,8 @@ export default ({ text, Image }) => {
 const styles = StyleSheet.create({
     image: {
         width: '95%',
-        height: 400,
-        marginTop: 20
+        height: 350,
+        marginTop: 10
     },
     text: {
         width: '95%',

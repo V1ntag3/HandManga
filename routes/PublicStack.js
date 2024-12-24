@@ -19,10 +19,10 @@ function AppStack() {
   return (
     <>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="ListChaptersManga" component={ListChaptersManga} />
-        <Stack.Screen name="Config" component={Config} />
-        <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen name="Home" component={Home} options={{ title: 'Home' }}/>
+        <Stack.Screen name="ListChaptersManga" component={ListChaptersManga} options={{ title: 'ListChaptersManga' }}/>
+        <Stack.Screen name="Config" component={Config} options={{ title: 'Config' }} />
+        <Stack.Screen name="Search" component={Search} options={{ title: 'Search' }}/>
       </Stack.Navigator>
       <Menu navigation={navigation} />
     </>

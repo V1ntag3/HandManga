@@ -44,8 +44,11 @@ export default function App() {
 
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: Globals.COLOR.LIGHT.COLOR5 }}>
-      <PublicStack />
-    </SafeAreaView>
+    <>
+      <SafeAreaView style={{ flex: 0, backgroundColor: Globals.COLOR.LIGHT.COLOR5 }} />
+      <SafeAreaView style={{ flex: 1, backgroundColor: Globals.COLOR.LIGHT.COLOR1 }}>
+        <PublicStack />
+      </SafeAreaView>
+    </>
   );
 }

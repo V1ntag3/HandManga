@@ -4,7 +4,7 @@ export default function ({ navigation, item }) {
     return (
         <TouchableOpacity onPress={() => { navigation.navigate("ListChaptersManga", item) }} style={styles.card}>
 
-            <Image style={styles.cover} source={{ uri: item.cover }} />
+            <Image style={styles.cover} source={{ uri: item.cover, cache:'force-cache' }} />
             <View style={{ marginLeft: 10, justifyContent: 'center' }} >
                 <Text numberOfLines={5} style={styles.text}>{item.attributes.title.en}</Text>
             </View>
